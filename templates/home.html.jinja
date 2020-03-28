@@ -1,0 +1,25 @@
+{% extends 'base.html.jinja' %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<h1>PyNSANE</h1>
+<div id="app">
+  <div id="options">
+    <label>Scanner: <scanner-selector :scanners="scanners" @change="onScannerChanged"></scanner-selector></label>
+    <div>
+      <h1>Scanner Options</h1>
+      <scanner-options :scanner="scanner" :values="options" @change="onOptionChanged" />
+    </div>
+    <button id="preview" @click="onPreviewClick()" :disabled="state != ''">Preview</button>
+    <button id="scan" @click="onScanClick()" :disabled="state != ''">Scan</button>
+    <button id="reset" @click="onResetClick()" :disabled="state != ''">Reset</button>
+  </div>
+  <div id="preview">
+    <img id="preview-img" :src="preview" />
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script src="/static/scanner.js"></script>
+{% endblock %}
